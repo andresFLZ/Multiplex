@@ -1,0 +1,16 @@
+#footer {
+    background-color: #212529;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    border-top: solid #198754;
+}
+
+#footer .informacion {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#footer .informacion p {
+    margin: 10px 0;
+}
