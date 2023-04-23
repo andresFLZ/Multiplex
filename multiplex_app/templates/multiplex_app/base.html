@@ -15,34 +15,26 @@
     <title>MULTIPLEX</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md" id="mainNav">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
-        
-            <!-- icono o nombre -->
             <a class="navbar-brand" href="#">
-                <i class="fa-brands fa-galactic-republic fa-2x"></i>
+                <i class="fa-solid fa-clapperboard fa-1x"></i>
             </a>
-                
-            <!-- boton del menu -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa-solid fa-book-journal-whills fa-2x"></i>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-
-            <!-- elementos del menu colapsable -->
-            <div class="collapse navbar-collapse" id="menu">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link" aria-current="page" href="#">Cartelera</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cartelera</a>
-                    </li>
-                    <li class="nav-item dropdown">
                         <a class="nav-link" href="#">Reserva</a>
                     </li>
                 </ul>
+                <button class="btn btn-outline-success" type="submit">Iniciar sesión</button>
             </div>
-        </div>  
+        </div>
     </nav>
 
     <script 
