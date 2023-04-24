@@ -1,3 +1,14 @@
+body {
+    background: linear-gradient( rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("../img/fondo.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+}
+
+.navbar {
+    border-bottom: solid #198754;
+}
+
 #footer {
     background-color: #212529;
     color: white;
@@ -13,4 +24,30 @@
 
 #footer .informacion p {
     margin: 10px 0;
+}
+
+#cartelera {
+    height: 300px;
+    background-color: aliceblue;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#cartelera .peliculas {
+    height: 100%;
+}
+
+#cartelera .peliculas .pelicula {
+    height: 100%;
+}
+
+#cartelera .peliculas .imagen {
+    height: 75%;
+    margin-top: 10px;
+}
+
+#cartelera .peliculas .imagen img {
+    height: 100%;
+    border: solid #198754;
+    border-radius: 4%;
 }
