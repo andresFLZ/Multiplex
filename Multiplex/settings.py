@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'multiplex_app.apps.MultiplexAppConfig',
+    'cartelera.apps.CarteleraConfig',
+    'comidas.apps.ComidasConfig',
+    'reserva.apps.ReservaConfig',
 ]
 
 MIDDLEWARE = [
