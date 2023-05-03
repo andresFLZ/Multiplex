@@ -1,6 +1,5 @@
 from datetime import timezone
 from django.db import models
-#from reserva.models import Reserva
 from cartelera.models import Pelicula
 from comidas.models import Snack
 
