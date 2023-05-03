@@ -1,4 +1,4 @@
-from datetime import timezone
+from datetime import timedelta
 from django.db import models
 #from reserva.models import Reserva
 from cartelera.models import Pelicula
@@ -22,7 +22,7 @@ class Cine(models.Model):
     
 
 class Empleado(models.Model):
-    dni = models.CharField(max_length=25, primary_key=True)
+    dni = models.CharField(max_length=25, unique=True, primary_key=True)
     nombre = models.CharField(max_length=30)
     telefono = models.CharField(max_length=12)
     cargo = models.IntegerField() # 1=admin, 2=empleado
@@ -37,9 +37,8 @@ class Empleado(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.dni:
-            self.tiempo_contratado = timezone.timedelta()
+            self.tiempo_contratado = timedelta(days=90)
         super().save(*args, **kwargs)
-
     def __str__(self):
         return self.nombre
     
