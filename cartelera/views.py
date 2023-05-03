@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Pelicula
 
-# Create your views here.
+class CarterleraList(ListView):
+    model = Pelicula
+    template_name = 'cartelera/cartelera_list.html'

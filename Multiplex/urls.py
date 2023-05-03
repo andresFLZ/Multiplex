@@ -19,4 +19,5 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('multiplex_app.urls')),
+    path('cartelera/', include('cartelera.urls')),
 ]
