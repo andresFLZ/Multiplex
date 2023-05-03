@@ -21,7 +21,7 @@ class Cine(models.Model):
     
 
 class Empleado(models.Model):
-    dni = models.CharField(max_length=25, primary_key=True)
+    dni = models.CharField(max_length=25, unique=True, primary_key=True)
     nombre = models.CharField(max_length=30)
     telefono = models.CharField(max_length=12)
     cargo = models.IntegerField() # 1=admin, 2=empleado
