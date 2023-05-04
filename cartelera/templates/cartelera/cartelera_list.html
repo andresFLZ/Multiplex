@@ -2,5 +2,26 @@
 {% load static %}
 
 {% block content %}
-pppppppppppppppppppppppp
+<div class="container" id="cartelera">
+    <div class="row peliculas">
+
+        {% if cartelera_list %}
+        {% for pelicula in cartelera_list %}
+        <div class="col-xs-12 col-lg-4 pelicula">
+            <div class="imagen">
+                <img src={{ pelicula.imagen }} alt="Pelicula en cartelera">
+            </div>
+            <div class="info-pelicula">
+                <h2>{{ pelicula.titulo }}</h2>
+                <p>Estreno: {{ pelicula.fecha_estreno }}</p>
+                <p>Director: {{ pelicula.director }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No hay registro de peliculas</p>
+        {% endif %}
+
+    </div>
+</div>
 {% endblock %}
