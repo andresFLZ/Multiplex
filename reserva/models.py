@@ -21,7 +21,7 @@ class Usuario(models.Model):
     
 
 class Sala(models.Model):
-    numero = models.IntegerField()
+    numero = models.IntegerField(unique=False)
     numero_sillas = models.IntegerField(verbose_name='numero de sillas')
     multiplex_id = models.ForeignKey(Cine, on_delete=models.CASCADE, verbose_name='multiplex')
 
@@ -31,7 +31,7 @@ class Sala(models.Model):
         verbose_name_plural = 'salas'
 
     def __str__(self):
-        return self.numero + 'M:' + self.multiplex_id
+        return str(self.numero)
     
 
 class Funcion(models.Model):
