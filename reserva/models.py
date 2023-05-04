@@ -31,11 +31,12 @@ class Sala(models.Model):
         verbose_name_plural = 'salas'
 
     def __str__(self):
-        return str(self.numero)
+        template = '{0.numero} - {0.multiplex_id}'
+        return template.format(self)
     
 
 class Funcion(models.Model):
-    horario = models.CharField(max_length=12)
+    horario = models.CharField(max_length=12)#Formato 24hs
     pelicula_id = models.ForeignKey(Pelicula, on_delete=models.CASCADE, verbose_name='pelicula')
     sala_id = models.ForeignKey(Sala, on_delete=models.CASCADE, verbose_name='sala')
 
@@ -45,14 +46,15 @@ class Funcion(models.Model):
         verbose_name_plural = 'funciones'
 
     def __str__(self):
-        return self.horario + 'P:' + self.pelicula_id
+        template = '{0.horario} - {0.pelicula_id} - {0.sala_id}'
+        return template.format(self)
 
 
 class Reserva(models.Model):
-    sillas = models.CharField(max_length=25)
-    estado = models.IntegerField()
+    sillas = models.CharField(max_length=25) #ejm: 25-30 (son las sillas que escogio la persona)
+    estado = models.IntegerField() #1: Ya pagó, 2: No ha pagado, 3: Cancelado
     funcion_id = models.ForeignKey(Funcion, on_delete=models.CASCADE, verbose_name='funcion')
-    usuario_id = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name='multiplex')
+    usuario_id = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name='usuario')
 
     class Meta:
         db_table = 'Reserva'
@@ -60,7 +62,8 @@ class Reserva(models.Model):
         verbose_name_plural = 'reservas'
 
     def __str__(self):
-        return self.funcion_id + 'U:' + self.usuario_id
+        template = '{0.funcion_id} - {0.usuario_id}'
+        return template.format(self)
     
 
 class Venta(models.Model):
@@ -76,4 +79,5 @@ class Venta(models.Model):
         verbose_name_plural = 'ventas'
 
     def __str__(self):
-        return self.fecha + 'R:' + self.reserva_id
+        template = '{0.reserva_id} - {0.reserva_id}'
+        return template.format(self)
