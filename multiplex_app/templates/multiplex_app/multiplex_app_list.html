@@ -1,0 +1,24 @@
+{% extends "multiplex_app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" id="multiplex">
+    <ol class="list-group list-group-numbered">
+
+        {% if cines_list %}
+        {% for cine in cines_list %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">{{ cine.nombre }}</div>
+                {{ cine.direccion }}
+            </div>
+            <button type="button" class="btn btn-dark">Reserva</button>
+        </li>
+        {% endfor %}
+        {% else %}
+        <p>No hay registro de multiplex</p>
+        {% endif %}
+
+    </ol>
+</div>
+{% endblock %}
