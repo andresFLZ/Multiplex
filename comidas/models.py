@@ -3,7 +3,7 @@ from django.db import models
 class Snack(models.Model):
     nombre = models.CharField(max_length=20)
     valor = models.IntegerField()
-    imagen = models.CharField(max_length=250)
+    imagen = models.URLField()#Url de donde la imagen esta alojada
 
     class Meta:
         db_table = 'Snack'

@@ -3,10 +3,22 @@ from django.db import models
 from cartelera.models import Pelicula
 from comidas.models import Snack
 
+optionsCC = [
+    [1, 'Bogotá D.C.'],
+    [2, 'Medellin'],
+    [3, 'Cali'],
+    [4, 'Baranquilla']
+]
+
+optionsEC = [
+    [1, 'Administrador'],
+    [2, 'Empleado'],
+]
+
 class Cine(models.Model):
     nombre = models.CharField(max_length=40)
     salas = models.IntegerField()
-    ciudad = models.CharField(max_length=25)
+    ciudad = models.IntegerField(choices=optionsCC)
     direccion = models.CharField(max_length=50)
     peliculas = models.ManyToManyField(Pelicula, db_table="Multiplex_pelicula")
     snacks = models.ManyToManyField(Snack, db_table="Multiplex_snack")
@@ -24,7 +36,7 @@ class Empleado(models.Model):
     dni = models.CharField(max_length=25, unique=True, primary_key=True)
     nombre = models.CharField(max_length=30)
     telefono = models.CharField(max_length=12)
-    cargo = models.IntegerField() # 1=admin, 2=empleado
+    cargo = models.IntegerField(choices=optionsEC) # 1=admin, 2=empleado
     fecha_inicio_cont = models.DateTimeField(auto_now_add=True, verbose_name='fecha de inicio del contrato')
     tiempo_contratado = models.DurationField()
     multiplex_id = models.ForeignKey(Cine, on_delete=models.CASCADE, verbose_name='multiplex')
