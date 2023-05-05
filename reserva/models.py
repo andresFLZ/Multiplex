@@ -3,13 +3,19 @@ from multiplex_app.models import Cine, Punto_agil
 from cartelera.models import Pelicula
 from comidas.models import Snack
 
+optionsS = [
+    [1, '1 (50 sillas)'],
+    [2, '2 (60 sillas)'],
+    [3, '3 (70 sillas)'],
+]
+
 class Usuario(models.Model):
     dni = models.CharField(max_length=25, primary_key=True)
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     edad = models.IntegerField()
-    correo = models.CharField(max_length=40)
-    puntos = models.IntegerField()
+    correo = models.EmailField()
+    puntos = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'Usuario'
@@ -22,7 +28,7 @@ class Usuario(models.Model):
 
 class Sala(models.Model):
     numero = models.IntegerField(unique=False)
-    numero_sillas = models.IntegerField(verbose_name='numero de sillas')
+    tipo = models.IntegerField(choices=optionsS, verbose_name='tipo de sala', default=1)
     multiplex_id = models.ForeignKey(Cine, on_delete=models.CASCADE, verbose_name='multiplex')
 
     class Meta:
@@ -81,3 +87,18 @@ class Venta(models.Model):
     def __str__(self):
         template = '{0.reserva_id} - {0.reserva_id}'
         return template.format(self)
+    
+
+class sillasDisponibles(models.Model):
+    num_sillas_dispo = models.IntegerField()
+    sillas_dispo = models.CharField(max_length=200)
+    funcion_id = models.ForeignKey(Funcion, on_delete=models.CASCADE, verbose_name='función')
+
+    class Meta:
+        db_table = 'Sillas_disponibles'
+        verbose_name = 'sillas disponibles'
+        verbose_name_plural = 'sillas disponibles'
+
+    def __str__(self):
+        template = '{0.num_sillas_dispo} - {0.funcion_id}'
+        return template.format(self)    

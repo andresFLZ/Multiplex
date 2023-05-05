@@ -1,13 +1,34 @@
 from django.db import models
 
+optionsC = [
+    [1, 'General'],
+    [2, 'Mayores de 12'],
+    [3, 'Mayores de 15'],
+    [4, 'Mayores de edad']
+]
+
+optionsL = [
+    [1, 'Español'],
+    [2, 'Ingles'],
+    [3, 'Japones']
+]
+
+optionsP = [
+    [1, '1'],
+    [2, '2'],
+    [3, '3'],
+    [4, '4'],
+    [5, '5']
+]
+
 class Pelicula(models.Model):
     titulo = models.CharField(max_length=30)
     director = models.CharField(max_length=30)
-    clasificacion = models.IntegerField() #General: 1, Mayores 12: 2, Mayores 15: 3, Mayores de edad: 4
-    lenguaje = models.IntegerField() #1: Español, 2: Ingles, 3: Japones
+    clasificacion = models.IntegerField(choices=optionsC) #General: 1, Mayores 12: 2, Mayores 15: 3, Mayores de edad: 4
+    lenguaje = models.IntegerField(choices=optionsL) #1: Español, 2: Ingles, 3: Japones
     fecha_estreno = models.DateField(verbose_name='fecha de estreno')
-    puntuacion = models.IntegerField()#Del 1 - 5
-    imagen = models.CharField(max_length=250)#Url de donde la imagen esta alojada
+    puntuacion = models.IntegerField(choices=optionsP)#Del 1 - 5
+    imagen = models.URLField()#Url de donde la imagen esta alojada
 
     class Meta:
         db_table = 'Pelicula'
