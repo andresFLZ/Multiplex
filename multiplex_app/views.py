@@ -17,6 +17,7 @@ class MultiplexDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(MultiplexDetail, self).get_context_data(**kwargs)
-        context['funciones'] = Funcion.objects.all()
+        multiplex = self.kwargs.get('pk')
+        context['funciones'] = Funcion.objects.filter(multiplex_id=multiplex)
         
         return context
