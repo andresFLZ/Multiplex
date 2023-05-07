@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.views.generic.base import TemplateView
+from django.views.generic import ListView
+from .models import Funcion
 
-class Reserva(TemplateView):
-    template_name = 'reserva/reserva_list.html'
+class FuncionList(ListView):
+    model = Funcion
+    template_name = 'reserva/funcion_list.html'
+    context_object_name = 'funcion_list'
 
-class SalaFuncion(TemplateView):
-    template_name = 'reserva/sala_funcion.html'

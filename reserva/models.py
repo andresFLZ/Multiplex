@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from multiplex_app.models import Cine, Punto_agil
 from cartelera.models import Pelicula
@@ -43,8 +44,10 @@ class Sala(models.Model):
 
 class Funcion(models.Model):
     horario = models.CharField(max_length=12)#Formato 24hs
+    fecha = models.DateField(default=date.today)
     pelicula_id = models.ForeignKey(Pelicula, on_delete=models.CASCADE, verbose_name='pelicula')
     sala_id = models.ForeignKey(Sala, on_delete=models.CASCADE, verbose_name='sala')
+    multiplex_id = models.ForeignKey(Cine, on_delete=models.CASCADE, verbose_name='multiplex', default=1)
 
     class Meta:
         db_table = 'Funcion'

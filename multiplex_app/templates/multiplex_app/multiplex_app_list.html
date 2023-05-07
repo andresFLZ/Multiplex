@@ -12,7 +12,8 @@
                 <div class="fw-bold">{{ cine.nombre }}</div>
                 {{ cine.direccion }}
             </div>
-            <button type="button" class="btn btn-dark">Reserva</button>
+            <button type="button" class="btn btn-dark" onclick="window.location.href = '{% url 'multiplex_app:Detail' cine.id %}'">Reserva</button>
+
         </li>
         {% endfor %}
         {% else %}
