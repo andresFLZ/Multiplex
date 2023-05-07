@@ -78,6 +78,10 @@ body {
     border-radius: 2%;
 }
 
+#sala {
+    margin: 30px auto;
+}
+
 @media screen and (min-width: 992px) {
     #cartelera .peliculas .pelicula {
       width: 31%;

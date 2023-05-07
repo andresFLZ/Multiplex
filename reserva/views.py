@@ -1,8 +1,5 @@
-from django.views.generic import ListView
-from .models import Funcion
+from django.views.generic.base import TemplateView
 
-class FuncionList(ListView):
-    model = Funcion
-    template_name = 'reserva/funcion_list.html'
-    context_object_name = 'funcion_list'
+class Asientos(TemplateView):
+    template_name = 'reserva/asientos.html'
 
