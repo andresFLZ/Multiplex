@@ -35,7 +35,6 @@
 				  <div class="seat"></div>
 				  <div class="seat"></div>
 				</div>
-		  
 				<div class="filaS">
 				  <div class="seat"></div>
 				  <div class="seat"></div>
@@ -84,15 +83,64 @@
 				  <div class="seat"></div>
 				  <div class="seat"></div>
 				</div>
+				{% if object.sala_id.tipo == 2 %}
+				<div class="filaS">
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat sold"></div>
+					<div class="seat sold"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+				</div>
+				{% elif object.sala_id.tipo == 3 %}
+				<div class="filaS">
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat sold"></div>
+					<div class="seat sold"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+				</div>
+				<div class="filaS">
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat sold"></div>
+					<div class="seat sold"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+					<div class="seat"></div>
+				</div>
+				{% endif %}
 			</div>
+
+			<p class="text">
+				You have selected <span id="count">0</span> seat for a price of RS.<span
+				  id="total">0</span>
+			</p>
         </div>
         <div class="col-xs-12 col-lg-3">
             <div class="card">
-                <img src="https://i.ibb.co/1J8hbXW/pelicula.jpg" class="card-img-top" alt="...">
+                <img src={{ object.pelicula_id.imagen }} class="card-img-top" alt="Pelicula">
                 <div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+					<h5 class="card-title">{{ object.pelicula_id.titulo }}</h5>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Clasificación: {{ object.pelicula_id.clasificacion }}</li>
+						<li class="list-group-item">Cine: {{ object.multiplex_id }}</li>
+						<li class="list-group-item">Fecha: {{ object.fecha }}</li>
+						<li class="list-group-item">Horario: {{ object.horario }}</li>
+						<li class="list-group-item">Sala: {{ object.sala_id.numero }}</li>
+					</ul>
                 </div>
               </div>
         </div>

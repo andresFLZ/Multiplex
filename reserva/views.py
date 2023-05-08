@@ -1,5 +1,7 @@
-from django.views.generic.base import TemplateView
+from django.views.generic import DetailView
+from .models import Funcion
 
-class Asientos(TemplateView):
+class Asientos(DetailView):
+    model = Funcion
     template_name = 'reserva/asientos.html'
 

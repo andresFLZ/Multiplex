@@ -83,7 +83,7 @@ body {
 }
 
 .sala {
-    margin: 50px 0;
+    margin: auto 0;
 }
 
 .salaC {
@@ -161,6 +161,18 @@ body {
     margin: 15px 0;
     transform: rotateX(-48deg);
     box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+p.text{
+    margin: 30px 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 5px;
+}
+
+p.text span{
+    color: rgb(158, 248, 158);
 }
 
 @media screen and (min-width: 992px) {
