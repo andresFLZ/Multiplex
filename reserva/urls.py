@@ -3,5 +3,5 @@ from reserva.views import *
 
 app_name = 'reserva'
 urlpatterns = [
-    path('funciones/', FuncionList.as_view(), name='Funcion'),
+    path('asientos/<int:pk>/', Asientos.as_view(), name='Asientos'),
 ]

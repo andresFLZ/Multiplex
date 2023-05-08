@@ -4,45 +4,27 @@
 {% block content %}
 <div class="container" id="multiplex">
     <ol class="list-group list-group-numbered">
-        
-        {% comment %}
-        {% for funcion in funciones %}
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                <div class="fw-bold">{{ funcion.horario }}</div>
-                {{ funcion.multiplex_id }},
-                {{ object.nombre }}
-            </div>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                ver horarios
-            </button>
-        </li>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-            </div>
-        </div>
-        {% endfor %}
-        {% endcomment %}
 
-        {% if funciones %}
-            {% for funcion in funciones %}
+        {% if object.peliculas %}
+            {% for pelicula in object.peliculas.all %}
             {% with num=forloop.counter|stringformat:"s" %}
             {% with idStr="multiCollapseExample"|add:num %}
             {% with target="#"|add:idStr %}
-                {% if object.nombre == funcion.multiplex_id|stringformat:"s" %}
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">{{ funcion.pelicula_id }}</div>
+                        <div class="fw-bold">{{ pelicula.titulo }}</div>
                     </div>
                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target={{ target }} aria-expanded="false" aria-controls={{ idStr }}>Ver horarios</button>
                 </li>
                 <div class="collapse multi-collapse" id={{ idStr }}>
                     <div class="card card-body">
-                      Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        {% for funcion in funciones %}
+                            {% if pelicula.titulo == funcion.pelicula_id|stringformat:"s" %}
+                            <button type="button" class="btn btn-dark" onclick="window.location.href = '{% url 'reserva:Asientos' funcion.id %}'">{{ funcion.horario }}</button>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
-                {% endif %}
             {% endwith %}
             {% endwith %}
             {% endwith %}
@@ -51,7 +33,6 @@
             <p>No hay registro de funciones en este cine</p>
         {% endif %}
         
-
     </ol>
 </div>
 {% endblock %}

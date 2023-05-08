@@ -1,0 +1,101 @@
+{% extends "multiplex_app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" id="sala-info">
+    <div class="row">
+        <div class="col-xs-12 col-lg-9 sala">
+			<ul class="showcase">
+				<li>
+				  <div class="seat"></div>
+				  <small>Disponible</small>
+				</li>
+				<li>
+				  <div class="seat selected"></div>
+				  <small>Seleccionado</small>
+				</li>
+				<li>
+				  <div class="seat sold"></div>
+				  <small>Vendido</small>
+				</li>
+			</ul>
+
+			<div class="salaC">
+				<div class="screen"></div>
+		  
+				<div class="filaS">
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				</div>
+		  
+				<div class="filaS">
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat sold"></div>
+				  <div class="seat sold"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				</div>
+				<div class="filaS">
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat sold"></div>
+				  <div class="seat sold"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				</div>
+				<div class="filaS">
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				</div>
+				<div class="filaS">
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat sold"></div>
+				  <div class="seat sold"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				  <div class="seat"></div>
+				</div>
+			</div>
+        </div>
+        <div class="col-xs-12 col-lg-3">
+            <div class="card">
+                <img src="https://i.ibb.co/1J8hbXW/pelicula.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
