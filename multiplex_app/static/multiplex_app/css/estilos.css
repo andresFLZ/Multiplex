@@ -175,6 +175,15 @@ p.text span{
     color: rgb(158, 248, 158);
 }
 
+#sillas_dispo{
+    display: none;
+}
+
+.confirmacion {
+    text-align: center;
+    margin: 40px 0;
+}
+
 @media screen and (min-width: 992px) {
     #cartelera .peliculas .pelicula {
       width: 31%;

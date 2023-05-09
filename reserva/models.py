@@ -99,8 +99,8 @@ class sillasDisponibles(models.Model):
 
     class Meta:
         db_table = 'Sillas_disponibles'
-        verbose_name = 'sillas disponibles'
-        verbose_name_plural = 'sillas disponibles'
+        verbose_name = 'sillas_disponibles'
+        verbose_name_plural = 'sillas_disponibles'
 
     def __str__(self):
         template = '{0.num_sillas_dispo} - {0.funcion_id}'
