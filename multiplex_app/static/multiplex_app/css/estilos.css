@@ -184,8 +184,32 @@ p.text span{
     margin: 40px 0;
 }
 
+.card {
+    border: solid #198754;
+    box-shadow: 0 0 5px 10px rgb(0 0 0 / 20%);
+}
+
+
+#detalle-reserva {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    min-height: 70vh;
+    margin: 25px auto;
+}
+
+#detalle-reserva .imagen {
+    text-align: center;
+}
+
+#detalle-reserva .botones-reserva {
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+}
+
 @media screen and (min-width: 992px) {
     #cartelera .peliculas .pelicula {
       width: 31%;
     }
-  }
+}

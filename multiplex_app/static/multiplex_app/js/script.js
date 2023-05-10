@@ -1,4 +1,5 @@
-const asientos_seleccionadas = [];
+const asientos_seleccionados = [];
+let boton_confirmacion = document.querySelector('.confirmacion');
 const asientos = document.querySelectorAll('.filaS .seat');
 const asientos_disponibles_db = document.getElementById("sillas_dispo").textContent.split("-");
 const asientos_disponibles = poblar();
@@ -19,19 +20,35 @@ function poblar() {
 
 function seleccionar(index, id) {
   if (index > -1) {
-    asientos_seleccionadas.splice(index, 1);
-    console.log(asientos_seleccionadas);
+    asientos_seleccionados.splice(index, 1);
+    console.log(asientos_seleccionados);
   } else {
-    asientos_seleccionadas.push(id);
-    console.log(asientos_seleccionadas);
+    asientos_seleccionados.push(id);
+    console.log(asientos_seleccionados);
   }
+}
+
+function SetearUrl() {
+  const params = new URLSearchParams();
+  let ruta = document.getElementById("ruta").textContent;
+  let nuevaURL = new URL('http://127.0.0.1:8000/');
+  nuevaURL += ruta;
+  nuevaURL = nuevaURL.substring(0, nuevaURL.lastIndexOf('/')) + '?'
+  params.append("asientos", asientos_seleccionados.join("-"));
+  nuevaURL += params.toString()
+  console.log(nuevaURL);
+  window.location.href = nuevaURL;
 }
 
 asientos_disponibles.forEach(asiento => {
   asiento.addEventListener('click', event => {
     let id = event.target.id;
-    let index = asientos_seleccionadas.indexOf(id);
+    let index = asientos_seleccionados.indexOf(id);
     seleccionar(index, id);
     event.target.classList.toggle('selected');
   });
+});
+
+boton_confirmacion.addEventListener('click', () => {
+  SetearUrl()
 });

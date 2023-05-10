@@ -126,7 +126,8 @@
 
 			<p class="text">
 				You have selected <span id="count">0</span> seat for a price of RS.<span id="total">0</span>
-				<span id="sillas_dispo">{{ sillas_disponibles.sillas_dispo }}</span>
+				<span id="sillas_dispo" class="oculto">{{ sillas_disponibles.sillas_dispo }}</span>
+				<span id="ruta" class="oculto">{% url 'reserva:Reserva' object.id %}</span>
 			</p>
         </div>
         <div class="col-xs-12 col-lg-3">
