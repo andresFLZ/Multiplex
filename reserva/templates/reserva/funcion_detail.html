@@ -1,0 +1,32 @@
+{% extends "multiplex_app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" id="detalle-reserva">
+    <div class="card">
+        <div class="row g-0">
+          <div class="col-md-4 imagen">
+            <img src={{ object.pelicula_id.imagen }} class="img-fluid rounded-start" alt="Pelicula">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title text-center">Detalles de la reserva</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ object.pelicula_id.titulo }}</li>
+                    <li class="list-group-item">Clasificación: {{ object.pelicula_id.clasificacion }}</li>
+                    <li class="list-group-item">Cine: {{ object.multiplex_id }}</li>
+                    <li class="list-group-item">Fecha: {{ object.fecha }}</li>
+                    <li class="list-group-item">Horario: {{ object.horario }}</li>
+                    <li class="list-group-item">Sala: {{ object.sala_id.numero }}</li>
+                    <li class="list-group-item">Asientos: {{ asientos }}</li>
+                </ul>
+                <div class="botones-reserva">
+                    <button type="button" class="btn btn-success">Reserva y paga ya</button>
+                    <button type="button" class="btn btn-danger">Reserva y paga en el cine</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock %}
