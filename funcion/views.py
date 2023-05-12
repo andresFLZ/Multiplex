@@ -1,4 +1,6 @@
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+from .forms import FuncionForm
 from .models import Funcion, sillasDisponibles
 
 class Asientos(DetailView):
@@ -30,6 +32,19 @@ class FuncionList(ListView):
     template_name = 'funcion/funcion_list.html'
     context_object_name = 'funcion_list'
 
-class FuncionDetailAdmin(DetailView):
+class FuncionUpdate(UpdateView):
     model = Funcion
-    template_name = 'funcion/funcion_detail_admin.html'
+    template_name = 'funcion/funcion_form.html'
+    form_class = FuncionForm
+    success_url = reverse_lazy('funcion:Funciones')
+
+class FuncionCreate(CreateView):
+    model = Funcion
+    template_name = 'funcion/funcion_form.html'
+    form_class = FuncionForm
+    success_url = reverse_lazy('funcion:Funciones')
+
+class FuncionDelete(DeleteView):
+    model = Funcion
+    template_name = 'funcion/funcion_confirm_delete.html'
+    success_url = reverse_lazy('funcion:Funciones')
