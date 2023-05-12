@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cartelera.apps.CarteleraConfig',
     'comidas.apps.ComidasConfig',
     'reserva.apps.ReservaConfig',
+    'funcion.apps.FuncionConfig',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
