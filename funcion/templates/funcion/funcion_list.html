@@ -3,8 +3,13 @@
 
 {% block content %}
 <div class="container" id="funciones">
-    <ol class="list-group list-group-numbered">
+    <div class="row">
+        <div class="col-12 text-center my-3">
+            <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'funcion:Create' %}'">añadir función</button>
+        </div>
+    </div>
 
+    <ol class="list-group list-group-numbered">
         {% if funcion_list %}
         {% for funcion in funcion_list %}
         <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -12,7 +17,8 @@
                 <div class="fw-bold">{{ funcion.pelicula_id.titulo }}</div>
                 {{ funcion.multiplex_id.nombre }} - {{ funcion.fecha }} - {{ funcion.horario }}
             </div>
-            <button type="button" class="btn btn-dark" onclick="window.location.href = '{% url 'funcion:DetailAdmin' funcion.id %}'">Reserva</button>
+            <button type="button" class="btn btn-success" onclick="window.location.href = '{% url 'funcion:Update' funcion.id %}'">Editar</button>
+            <button type="button" class="btn btn-danger" onclick="window.location.href = '{% url 'funcion:Delete' funcion.id %}'">Eliminar</button>
 
         </li>
         {% endfor %}
