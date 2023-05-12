@@ -1,6 +1,5 @@
 from datetime import timezone
 from django.db import models
-from cartelera.models import Pelicula
 from comidas.models import Snack
 
 optionsCC = [
@@ -20,7 +19,6 @@ class Cine(models.Model):
     salas = models.IntegerField()
     ciudad = models.IntegerField(choices=optionsCC)
     direccion = models.CharField(max_length=50)
-    peliculas = models.ManyToManyField(Pelicula, db_table="Multiplex_pelicula")
     snacks = models.ManyToManyField(Snack, db_table="Multiplex_snack")
 
     class Meta:

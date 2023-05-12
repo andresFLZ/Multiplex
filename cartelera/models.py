@@ -1,5 +1,7 @@
 from django.db import models
 
+from multiplex_app.models import Cine
+
 optionsC = [
     [1, 'General'],
     [2, 'Mayores de 12'],
@@ -29,6 +31,7 @@ class Pelicula(models.Model):
     fecha_estreno = models.DateField(verbose_name='fecha de estreno')
     puntuacion = models.IntegerField(choices=optionsP)#Del 1 - 5
     imagen = models.URLField()#Url de donde la imagen esta alojada
+    cines = models.ManyToManyField(Cine, db_table="Multiplex_pelicula")
 
     class Meta:
         db_table = 'Pelicula'

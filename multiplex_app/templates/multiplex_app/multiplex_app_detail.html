@@ -5,8 +5,8 @@
 <div class="container" id="multiplex">
     <ol class="list-group list-group-numbered">
 
-        {% if object.peliculas %}
-            {% for pelicula in object.peliculas.all %}
+        {% if peliculas %}
+            {% for pelicula in peliculas %}
             {% with num=forloop.counter|stringformat:"s" %}
             {% with idStr="multiCollapseExample"|add:num %}
             {% with target="#"|add:idStr %}
