@@ -1,0 +1,31 @@
+{% extends "multiplex_app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" id="funciones">
+    <div class="row">
+        <div class="col-12 text-center my-3">
+            <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'funcion:Create' %}'">añadir función</button>
+        </div>
+    </div>
+
+    <ol class="list-group list-group-numbered">
+        {% if funcion_list %}
+        {% for funcion in funcion_list %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">{{ funcion.pelicula_id.titulo }}</div>
+                {{ funcion.multiplex_id.nombre }} - {{ funcion.fecha }} - {{ funcion.horario }}
+            </div>
+            <button type="button" class="btn btn-success" onclick="window.location.href = '{% url 'funcion:Update' funcion.id %}'">Editar</button>
+            <button type="button" class="btn btn-danger" onclick="window.location.href = '{% url 'funcion:Delete' funcion.id %}'">Eliminar</button>
+
+        </li>
+        {% endfor %}
+        {% else %}
+        <p>No hay funciones</p>
+        {% endif %}
+
+    </ol>
+</div>
+{% endblock %}
