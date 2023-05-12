@@ -3,6 +3,11 @@
 
 {% block content %}
 <div class="container" id="cartelera">
+    <div class="row">
+        <div class="col-12 text-center my-4">
+            <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'cartelera:Create' %}'">añadir pelicula</button>
+        </div>
+    </div>
     <div class="row peliculas">
 
         {% if cartelera_list %}
@@ -15,6 +20,10 @@
                 <h2>{{ pelicula.titulo }}</h2>
                 <p>Estreno: {{ pelicula.fecha_estreno }}</p>
                 <p>Director: {{ pelicula.director }}</p>
+            </div>
+            <div class="botones-crud">
+                <button type="button" class="btn btn-success" onclick="window.location.href = '{% url 'cartelera:Update' pelicula.id %}'">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="window.location.href = '{% url 'cartelera:Delete' pelicula.id %}'">Eliminar</button>
             </div>
         </div>
         {% endfor %}

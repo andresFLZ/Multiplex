@@ -70,6 +70,14 @@ body {
     box-shadow: 0 0 5px 10px rgb(0 0 0 / 20%);
 }
 
+#cartelera .peliculas .botones-crud {
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+    width: 70%;
+    margin-top: 20px;
+}
+
 #multiplex {
     margin: 30px auto;
     padding: 0;
@@ -206,6 +214,25 @@ p.text span{
     justify-content: space-between;
     display: flex;
     padding: 10px;
+}
+
+#formulario {
+    max-width: 600px;
+    margin: 35px auto;
+}
+
+#formulario label {
+    color: white;
+}
+
+#eliminar-registro {
+    max-width: 600px;
+    margin: 35px auto;
+    text-align: center;
+}
+
+#eliminar-registro p {
+    color: white;
 }
 
 @media screen and (min-width: 992px) {

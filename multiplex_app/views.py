@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import TemplateView
+from cartelera.models import Pelicula
 from reserva.models import Funcion
 from .models import Cine
 
@@ -19,5 +20,6 @@ class MultiplexDetail(DetailView):
         context = super(MultiplexDetail, self).get_context_data(**kwargs)
         multiplex = self.kwargs.get('pk')
         context['funciones'] = Funcion.objects.filter(multiplex_id=multiplex)
-        
+        context['peliculas'] = Pelicula.objects.filter(cines__id=multiplex)        
+
         return context
