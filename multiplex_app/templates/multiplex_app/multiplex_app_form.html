@@ -1,0 +1,15 @@
+{% extends "multiplex_app/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container" id="formulario">
+    <form method="post">
+        {% csrf_token %}
+    
+        {{ form|crispy }}
+
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+{% endblock %}

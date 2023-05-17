@@ -1,4 +1,5 @@
 from datetime import timezone
+import random
 from django.db import models
 
 optionsCC = [
@@ -11,6 +12,12 @@ optionsCC = [
 optionsEC = [
     [1, 'Administrador'],
     [2, 'Empleado'],
+]
+
+optionsS = [
+    [1, '1 (50 sillas)'],
+    [2, '2 (60 sillas)'],
+    [3, '3 (70 sillas)'],
 ]
 
 class Cine(models.Model):
@@ -27,6 +34,32 @@ class Cine(models.Model):
     def __str__(self):
         return self.nombre
     
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            super().save(*args, **kwargs)
+            for i in range(self.salas):
+                Sala.objects.create(
+                    numero=i+1, 
+                    tipo = random.randint(1, 3),
+                    multiplex_id=self
+                )
+        else:
+            super().save(*args, **kwargs)
+    
+
+class Sala(models.Model):
+    numero = models.IntegerField(unique=False)
+    tipo = models.IntegerField(choices=optionsS, verbose_name='tipo de sala', default=1)
+    multiplex_id = models.ForeignKey(Cine, on_delete=models.CASCADE, verbose_name='multiplex')
+
+    class Meta:
+        db_table = 'Sala'
+        verbose_name = 'sala'
+        verbose_name_plural = 'salas'
+
+    def __str__(self):
+        template = '{0.numero} - {0.multiplex_id} - {0.tipo}'
+        return template.format(self)
 
 class Empleado(models.Model):
     dni = models.CharField(max_length=25, unique=True, primary_key=True)
