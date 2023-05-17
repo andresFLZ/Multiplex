@@ -247,6 +247,18 @@ p.text span{
     margin-right: 15px;
 }
 
+#multiplex-admin ol {
+    margin: 30px auto;
+    padding: 0;
+    border: solid #198754;
+    box-shadow: 0 0 5px 10px rgb(0 0 0 / 20%);
+    border-radius: 2%;
+}
+
+#multiplex-admin li .btn-success {
+    margin-right: 15px;
+}
+
 @media screen and (min-width: 992px) {
     #cartelera .peliculas .pelicula {
       width: 31%;
