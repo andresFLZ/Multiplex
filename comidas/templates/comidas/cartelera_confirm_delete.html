@@ -1,0 +1,12 @@
+{% extends "multiplex_app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" id="eliminar-registro">
+    <form method="post">
+        {% csrf_token %}
+        <p>Desea eliminar la Comida {{ object }}</p>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+</div>
+{% endblock %}
