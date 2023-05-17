@@ -1,0 +1,35 @@
+{% extends "multiplex_app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" id="cartelera">
+    <div class="row">
+        <div class="col-12 text-center my-4">
+            <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'comidas:Create' %}'">añadir snack</button>
+        </div>
+    </div>
+    <div class="row peliculas">
+
+        {% if comidas_list %}
+        {% for comida in comidas_list %}
+        <div class="col-xs-12 col-lg-4 pelicula">
+            <div class="imagen">
+                <img src={{ comida.imagen }} alt="Pelicula en cartelera">
+            </div>
+            <div class="info-pelicula">
+                <h2>{{ comida.nombre }}</h2>
+                <p>Precio: {{ comida.valor }}</p>
+            </div>
+            <div class="botones-crud">
+                <button type="button" class="btn btn-success" onclick="window.location.href = '{% url 'comidas:Update' comida.id %}'">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="window.location.href = '{% url 'comidas:Delete' comida.id %}'">Eliminar</button>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No hay registro de Comidas</p>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
