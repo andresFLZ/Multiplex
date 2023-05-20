@@ -183,7 +183,7 @@ p.text span{
     color: rgb(158, 248, 158);
 }
 
-#sillas_dispo{
+.oculto{
     display: none;
 }
 
@@ -203,6 +203,7 @@ p.text span{
     justify-content: center;
     display: flex;
     min-height: 70vh;
+    max-width: 130vh;
     margin: 25px auto;
 }
 
@@ -257,6 +258,59 @@ p.text span{
 
 #multiplex-admin li .btn-success {
     margin-right: 15px;
+}
+
+.lista-comidas {
+    max-width: 130vh;
+    margin: 25px auto;
+    border: solid #198754;
+    box-shadow: 0 0 5px 10px rgb(0 0 0 / 20%);
+}
+
+.lista-comidas .titulo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.lista-comidas .titulo span {
+    font-size: 14px;
+    font-weight: normal;
+    text-transform: initial;
+    color: gray;
+    font-style: italic;
+}
+
+.lista-comidas .snack-reserva {
+    position: relative;
+    font-weight: bold;
+}
+
+.lista-comidas .snack-reserva span {
+    font-weight: normal;
+}
+
+.lista-comidas .snack-reserva .botones {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    margin-right: 20px;
+}
+
+.lista-comidas .snack-reserva .botones .btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+.lista-comidas .snack-reserva .botones span {
+    margin: auto 10px;
 }
 
 @media screen and (min-width: 992px) {

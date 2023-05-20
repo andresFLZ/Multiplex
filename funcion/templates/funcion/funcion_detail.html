@@ -2,31 +2,60 @@
 {% load static %}
 
 {% block content %}
-<div class="container" id="detalle-reserva">
-    <div class="card">
-        <div class="row g-0">
-          <div class="col-md-4 imagen">
-            <img src={{ object.pelicula_id.imagen }} class="img-fluid rounded-start" alt="Pelicula">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title text-center">Detalles de la reserva</h5>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ object.pelicula_id.titulo }}</li>
-                    <li class="list-group-item">Clasificación: {{ object.pelicula_id.clasificacion }}</li>
-                    <li class="list-group-item">Cine: {{ object.multiplex_id }}</li>
-                    <li class="list-group-item">Fecha: {{ object.fecha }}</li>
-                    <li class="list-group-item">Horario: {{ object.horario }}</li>
-                    <li class="list-group-item">Sala: {{ object.sala_id.numero }}</li>
-                    <li class="list-group-item">Asientos: {{ asientos }}</li>
-                </ul>
-                <div class="botones-reserva">
-                    <button type="button" class="btn btn-success">Reserva y paga ya</button>
-                    <button type="button" class="btn btn-danger">Reserva y paga en el cine</button>
-                </div>
+<div class="container">  
+  <div class="row">
+    <div class="col-12">
+      <ul class="list-group lista-comidas">
+        <li class="list-group-item titulo">
+          Snacks<br>
+          <span>*Para poder añadir comida a tu compra debes pagar ahora mismo*</span>
+        </li>
+        {% if snacks %}
+          {% for snack in snacks %}
+          <li class="list-group-item snack-reserva">
+            {{ snack.nombre }}<br>
+            <span id="precio-producto">{{ snack.valor }}</span>
+            <div class="botones">
+              <button type="button" class="btn btn-success">+</button>
+              <button type="button" class="btn btn-danger">-</button>
+              <span id="cantidad-snacks-r">0</span>
+              <span id="precio-snacks-r">0</span>
             </div>
+          </li>
+          {% endfor %}
+        {% else %}
+        <li class="list-group-item">No hay snacks disponibles</li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card" id="detalle-reserva">
+      <div class="row g-0">
+        <div class="col-md-4 imagen">
+          <img src={{ object.pelicula_id.imagen }} class="img-fluid rounded-start" alt="Pelicula">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+              <h5 class="card-title text-center">Detalles de la reserva</h5>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">{{ object.pelicula_id.titulo }}</li>
+                  <li class="list-group-item">Cine: {{ object.multiplex_id }}</li>
+                  <li class="list-group-item">Fecha: {{ object.fecha }}</li>
+                  <li class="list-group-item">Horario: {{ object.horario }}</li>
+                  <li class="list-group-item">Sala: {{ object.sala_id.numero }}</li>
+                  <li class="list-group-item">Asientos: {{ asientos }}</li>
+                  <li class="list-group-item">Precio: {{ precio }}</li>
+              </ul>
+              <div class="botones-reserva">
+                  <button type="button" class="btn btn-success">Reserva y paga ya</button>
+                  <button type="button" class="btn btn-danger">Reserva y paga en el cine</button>
+              </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  
 </div>
 {% endblock %}
