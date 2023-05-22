@@ -187,7 +187,7 @@ p.text span{
     display: none;
 }
 
-.confirmacion {
+.cont-confirmacion {
     text-align: center;
     margin: 40px 0;
 }
@@ -311,6 +311,16 @@ p.text span{
 
 .lista-comidas .snack-reserva .botones span {
     margin: auto 10px;
+}
+
+.lista-comidas .snack-reserva .botones .restar-precio {
+    margin-right: 20px;
+}
+
+.boton-desactivado {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 @media screen and (min-width: 992px) {

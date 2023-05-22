@@ -147,9 +147,12 @@
         </div>
     </div>
 	<div class="row">
-		<div class="col-12 confirmacion">
-			<button type="button" class="btn btn-dark">Confirmar compra</button>
+		<div class="col-12 cont-confirmacion">
+			<button type="button" class="btn btn-dark confirmacion">Confirmar compra</button>
 		</div>
 	</div>
 </div>
+{% endblock %}
+{% block javascript %}
+<script src="{% static 'js/asientos.js' %}"></script>
 {% endblock %}

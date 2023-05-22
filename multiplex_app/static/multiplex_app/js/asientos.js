@@ -1,5 +1,5 @@
 const asientos_seleccionados = [];
-let boton_confirmacion = document.querySelector('.confirmacion');
+let boton_confirmacion_asientos = document.querySelector('.confirmacion');
 let precio_asiento = 20000;
 let num_asientos_seleccionados = document.getElementById("count-asientos");
 let total_precio = document.getElementById("total-asientos");
@@ -48,6 +48,7 @@ function SetearUrl() {
   window.location.href = nuevaURL;
 }
 
+
 asientos_disponibles.forEach(asiento => {
   asiento.addEventListener('click', event => {
     let id = event.target.id;
@@ -58,6 +59,6 @@ asientos_disponibles.forEach(asiento => {
   });
 });
 
-boton_confirmacion.addEventListener('click', () => {
+boton_confirmacion_asientos.addEventListener('click', () => {
   SetearUrl()
 });
