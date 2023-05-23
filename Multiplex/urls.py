@@ -21,6 +21,6 @@ urlpatterns = [
     path('', include('multiplex_app.urls')),
     path('cartelera/', include('cartelera.urls')),
     path('comidas/', include('comidas.urls')),
-    #path('reserva/', include('reserva.urls')),
+    path('reserva/', include('reserva.urls')),
     path('funcion/', include('funcion.urls')),
 ]

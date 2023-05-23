@@ -288,6 +288,10 @@ p.text span{
     font-weight: bold;
 }
 
+.lista-comidas .snack-reserva .nombre-s {
+    font-weight: bold;
+}
+
 .lista-comidas .snack-reserva span {
     font-weight: normal;
 }
