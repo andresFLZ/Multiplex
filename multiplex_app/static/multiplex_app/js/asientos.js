@@ -1,10 +1,12 @@
 const asientos_seleccionados = [];
-let boton_confirmacion = document.querySelector('.confirmacion');
+let boton_confirmacion_asientos = document.querySelector('.confirmacion');
+let precio_asiento = 20000;
+let num_asientos_seleccionados = document.getElementById("count-asientos");
+let total_precio = document.getElementById("total-asientos");
 const asientos = document.querySelectorAll('.filaS .seat');
 const asientos_disponibles_db = document.getElementById("sillas_dispo").textContent.split("-");
 const asientos_disponibles = poblar();
 
-console.log(asientos_disponibles_db);
 
 function poblar() {
   for (let i=0; i<asientos.length; i++) {
@@ -28,6 +30,11 @@ function seleccionar(index, id) {
   }
 }
 
+function asignarPrecio() {
+  num_asientos_seleccionados.innerText = asientos_seleccionados.length;
+  total_precio.innerText = precio_asiento*asientos_seleccionados.length;
+}
+
 function SetearUrl() {
   const params = new URLSearchParams();
   let ruta = document.getElementById("ruta").textContent;
@@ -35,20 +42,23 @@ function SetearUrl() {
   nuevaURL += ruta;
   nuevaURL = nuevaURL.substring(0, nuevaURL.lastIndexOf('/')) + '?'
   params.append("asientos", asientos_seleccionados.join("-"));
+  params.append("precio", total_precio.textContent)
   nuevaURL += params.toString()
   console.log(nuevaURL);
   window.location.href = nuevaURL;
 }
+
 
 asientos_disponibles.forEach(asiento => {
   asiento.addEventListener('click', event => {
     let id = event.target.id;
     let index = asientos_seleccionados.indexOf(id);
     seleccionar(index, id);
+    asignarPrecio();
     event.target.classList.toggle('selected');
   });
 });
 
-boton_confirmacion.addEventListener('click', () => {
+boton_confirmacion_asientos.addEventListener('click', () => {
   SetearUrl()
 });

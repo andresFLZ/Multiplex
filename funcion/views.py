@@ -1,5 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+
+from comidas.models import Snack
 from .forms import FuncionForm
 from .models import Funcion, sillasDisponibles
 
@@ -20,11 +22,14 @@ class FuncionDetail(DetailView):
 
     def get(self, request, *args, **kwargs):
         self.asientos = request.GET.get('asientos')
+        self.precio = request.GET.get('precio')
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['asientos'] = self.asientos
+        context['precio'] = self.precio
+        context['snacks'] = Snack.objects.all()
         return context
 
 class FuncionList(ListView):
