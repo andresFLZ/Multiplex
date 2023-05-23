@@ -22,8 +22,9 @@ class Usuario(models.Model):
 
 class Reserva(models.Model):
     sillas = models.CharField(max_length=25) #ejm: 25-30 (son las sillas que escogio la persona)
-    estado = models.IntegerField() #1: Ya pagó, 2: No ha pagado, 3: Cancelado
+    estado = models.IntegerField() #1: Ya pagó, 2: No ha pagado
     comida = models.BooleanField(default=False)
+    valor = models.IntegerField()
     funcion_id = models.ForeignKey(Funcion, on_delete=models.CASCADE, verbose_name='funcion')
     usuario_id = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name='usuario')
 
@@ -36,13 +37,24 @@ class Reserva(models.Model):
         template = '{0.funcion_id} - {0.usuario_id}'
         return template.format(self)
     
-
+    """def crear_venta(self):
+        ventaN = Venta.objects.create(
+                valor = self.valor,
+                punto_agil_id = Punto_agil.objects.get(pk=1),
+                reserva_id = self,
+            )
+        ventaN.save()
+    
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            super().save(*args, **kwargs)"""
+            
 class Venta(models.Model):
-    fecha = models.DateField()
+    fecha = models.DateField(auto_now_add=True, blank=True)
     valor = models.IntegerField()
     punto_agil_id = models.ForeignKey(Punto_agil, on_delete=models.CASCADE, verbose_name='punto agil')
     reserva_id = models.ForeignKey(Reserva, on_delete=models.CASCADE, verbose_name='reserva')
-    snacks = models.ManyToManyField(Snack, db_table="Venta_snack")
+    snacks = models.ManyToManyField(Snack, through="Venta_snack", blank=True)
 
     class Meta:
         db_table = 'Venta'
@@ -52,3 +64,8 @@ class Venta(models.Model):
     def __str__(self):
         template = '{0.reserva_id} - {0.reserva_id}'
         return template.format(self)    
+    
+class Venta_snack(models.Model):
+    snack_id = models.ForeignKey(Snack, on_delete=models.CASCADE, verbose_name='snack')
+    venta_id = models.ForeignKey(Venta, on_delete=models.CASCADE, verbose_name='venta')
+    cantidad = models.IntegerField()

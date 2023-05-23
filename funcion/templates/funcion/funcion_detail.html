@@ -18,8 +18,9 @@
           {% with idBr="botonR"|add:num %}
           {% with idCs="cantidadS"|add:num %}
           {% with idPs="precioS"|add:num %}
+          {% with idN="nombreS"|add:num %}
           <li class="list-group-item snack-reserva">
-            {{ snack.nombre }}<br>
+            <span id={{ idN }} class="nombre-s">{{ snack.nombre }}</span><br>
             <span class="precio-producto" id={{ idP }}>{{ snack.valor }}</span>
             <div class="botones">
               <button type="button" class="btn btn-success sumar-precio btn-snack-r" id={{ idBs }}>+</button>
@@ -28,6 +29,7 @@
               Precio:<span class="precio-snacks-r" id={{ idPs }}>0</span>
             </div>
           </li>
+          {% endwith %}
           {% endwith %}
           {% endwith %}
           {% endwith %}
@@ -57,17 +59,22 @@
           <div class="card-body">
               <h5 class="card-title text-center">Detalles de la reserva</h5>
               <ul class="list-group list-group-flush">
+                  <span class="oculto" id="dni-usuario">123456</span>
+                  <span class="oculto" id="id-funcion">{{ object.id }}</span>
                   <li class="list-group-item">{{ object.pelicula_id.titulo }}</li>
                   <li class="list-group-item">Cine: {{ object.multiplex_id }}</li>
                   <li class="list-group-item">Fecha: {{ object.fecha }}</li>
                   <li class="list-group-item">Horario: {{ object.horario }}</li>
                   <li class="list-group-item">Sala: {{ object.sala_id.numero }}</li>
-                  <li class="list-group-item">Asientos: {{ asientos }}</li>
-                  <li class="list-group-item">Precio: <span id="precio-total-reserva">{{ precio }}</span></li>
+                  <li class="list-group-item" id="asientos-r">Asientos: {{ asientos }}</li>
+                  <li class="list-group-item" id="precio-r">Precio: <span id="precio-total-reserva">{{ precio }}</span></li>
               </ul>
               <div class="botones-reserva">
-                  <button type="button" class="btn btn-success" id="btn-reserva-ya">Reserva y paga ya</button>
+                <form method="POST" action="{% url 'reserva:Reserva' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-success" id="btn-reserva-ya">Reserva y paga ya</button>
                   <button type="button" class="btn btn-danger" id="btn-reserva-desp">Reserva y paga en el cine</button>
+                </form>
               </div>
           </div>
         </div>
@@ -79,4 +86,5 @@
 {% endblock %}
 {% block javascript %}
 <script src="{% static 'js/snacks.js' %}"></script>
+<script src="{% static 'js/reserva.js' %}"></script>
 {% endblock %}

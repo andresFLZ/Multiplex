@@ -64,10 +64,8 @@ function alternarEstado() {
 
   if (contenedor_total.classList.contains('oculto')) {
     boton_rd.disabled = false;
-    contenedor_total.classList.remove('boton-desactivado');
   } else {
     boton_rd.disabled = true;
-    contenedor_total.classList.add('boton-desactivado');
   }
 }
 
