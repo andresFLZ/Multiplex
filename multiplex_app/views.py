@@ -9,6 +9,12 @@ from .models import Cine
 class Inicio(TemplateView):
     template_name = 'multiplex_app/inicio.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(Inicio, self).get_context_data(**kwargs)
+        context['peliculas'] = Pelicula.objects.order_by('-fecha_estreno')[:3]
+
+        return context
+
 class MultiplexList(ListView):
     model = Cine
     template_name = 'multiplex_app/multiplex_app_list.html'

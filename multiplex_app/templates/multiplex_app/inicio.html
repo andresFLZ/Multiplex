@@ -4,36 +4,22 @@
 {% block content %}
 <div class="container" id="cartelera">
     <div class="row peliculas">
+        {% if peliculas %}
+        {% for pelicula in peliculas %}
         <div class="col-xs-12 col-lg-4 pelicula">
             <div class="imagen">
-                <img src="https://i.ibb.co/1J8hbXW/pelicula.jpg" alt="Pelicula en cartelera">
+                <img src={{ pelicula.imagen }} alt="Pelicula en cartelera">
             </div>
             <div class="info-pelicula">
-                <h2>Suzume no Tojimari</h2>
-                <p>Estreno: 20-Abr-2023</p>
-                <p>Género: Acción, Animación, Aventura</p>
+                <h2>{{ pelicula.titulo }}</h2>
+                <p>Estreno: {{ pelicula.fecha_estreno }}</p>
+                <p>Director: {{ pelicula.director }}</p>
             </div>
         </div>
-        <div class="col-xs-12 col-lg-4 pelicula">
-            <div class="imagen">
-                <img src="https://i.ibb.co/1J8hbXW/pelicula.jpg" alt="Pelicula en cartelera">
-            </div>
-            <div class="info-pelicula">
-                <h2>Suzume no Tojimari</h2>
-                <p>Estreno: 20-Abr-2023</p>
-                <p>Género: Acción, Animación, Aventura</p>
-            </div>
-        </div>
-        <div class="col-xs-12 col-lg-4 pelicula">
-            <div class="imagen">
-                <img src="https://i.ibb.co/1J8hbXW/pelicula.jpg" alt="Pelicula en cartelera">
-            </div>
-            <div class="info-pelicula">
-                <h2>Suzume no Tojimari</h2>
-                <p>Estreno: 20-Abr-2023</p>
-                <p>Género: Acción, Animación, Aventura</p>
-            </div>
-        </div>
+        {% endfor %}
+        {% else %}
+        <p>No hay registro de peliculas</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
