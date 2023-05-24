@@ -1,6 +1,7 @@
 import json
 from django.views.generic.base import RedirectView
 from django.views.generic.base import TemplateView
+from funcion.models import sillasDisponibles
 from comidas.models import Snack
 from multiplex_app.models import Punto_agil
 from funcion.models import Funcion
@@ -18,13 +19,23 @@ class ReservaRedirect(RedirectView):
         elif comida == 'true':
                 return True
 
-    def actualizarSillasDisp(self, asientos):
-         pass
+    def actualizarSillasDisp(self, asientos, funcion):
+        sillas_dispo = sillasDisponibles.objects.get(funcion_id=funcion)
+        #num_sillas = sillas_dispo.num_sillas_dispo
+        #sillas = sillas_dispo.sillas_dispo.split("-")
+
+        sillasD = [elemento for elemento in sillas_dispo.sillas_dispo.split("-") if elemento not in asientos.split("-")]
+
+        numS = sillas_dispo.num_sillas_dispo-len(asientos.split("-"))
+
+        #print(num_sillas, numeroS, sillas, asientos.split("-"), resultado, "-".join(resultado))
+
+        sillas_dispo.num_sillas_dispo = numS
+        sillas_dispo.sillas_dispo = "-".join(sillasD)
+        sillas_dispo.save()
+
 
     def crearReserva(self, asientos, estado, comida, valor, funcion, usuario):
-        print(type(asientos), type(estado), type(comida), type(valor), type(funcion), type(usuario))
-        print(asientos, estado, comida, valor, funcion, usuario)
-
         reserva = Reserva()
         reserva.sillas = asientos
         reserva.estado = estado
@@ -33,6 +44,8 @@ class ReservaRedirect(RedirectView):
         reserva.funcion_id = Funcion.objects.get(pk=funcion)  
         reserva.usuario_id = Usuario.objects.get(pk=usuario)  
         reserva.save()
+
+        self.actualizarSillasDisp(asientos, funcion)
 
         return reserva
 
@@ -59,14 +72,11 @@ class ReservaRedirect(RedirectView):
 
                 if 'snacks' in request.POST:
                     self.crearVenta(self.crearReserva(request.POST['asientos'], int(request.POST['estado']), self.existeComida(request.POST['comida']), int(request.POST['valor']), int(request.POST['funcion']), int(request.POST['usuario'])), json.loads(request.POST['snacks']))
-                    print("Caso: paga ya con snacks", json.loads(request.POST['snacks']))
                 else:
                     self.crearVenta(self.crearReserva(request.POST['asientos'], int(request.POST['estado']), self.existeComida(request.POST['comida']), int(request.POST['valor']), int(request.POST['funcion']), int(request.POST['usuario'])))
-                    print("Caso: paga ya sin snacks")
 
             elif int(request.POST['estado']) == 2:
-                self.crearReserva(request.POST['asientos'], int(request.POST['estado']), self.existeComida(request.POST['comida']), int(request.POST['valor']), int(request.POST['funcion']), int(request.POST['usuario']))     
-                print("Caso: paga despues")
+                self.crearReserva(request.POST['asientos'], int(request.POST['estado']), self.existeComida(request.POST['comida']), int(request.POST['valor']), int(request.POST['funcion']), int(request.POST['usuario'])) 
         else:
             print("Error")
 

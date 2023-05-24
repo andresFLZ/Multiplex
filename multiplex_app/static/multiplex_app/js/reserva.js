@@ -1,3 +1,4 @@
+const reserva_d = document.getElementById("btn-reserva-desp");
 const boton_ry = document.getElementById("btn-reserva-ya");
 const form = boton_ry.closest('form');
 
@@ -83,8 +84,20 @@ boton_ry.addEventListener('click', e => {
     if (comida == true) {
         let snacks = listarSnacks()
         aniadirSnacks(snacks)
-        console.log(snacks)
     }
 
+    form.submit();
+});
+
+reserva_d.addEventListener('click', e => {
+    e.preventDefault();
+    let asientos = document.getElementById("asientos-r").textContent.split(": ")[1];
+    let estado = 2;
+    let comida = false;
+    let valor = document.getElementById("precio-r").textContent.split(": ")[1];
+    let funcion = document.getElementById("id-funcion").textContent;
+    let usuario = document.getElementById("dni-usuario").textContent;
+
+    generarForm(asientos, estado, comida, valor, funcion, usuario);
     form.submit();
 });
