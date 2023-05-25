@@ -1,5 +1,5 @@
 from django.urls import path
-from multiplex_app.views import Inicio, MultiplexList, MultiplexDetail, CineList, CineUpdate, CineCreate, CineDelete
+from multiplex_app.views import Inicio, MultiplexList, MultiplexDetail, CineList, CineUpdate, CineCreate, CineDelete, Register
 
 app_name = 'multiplex_app'
 urlpatterns = [
@@ -10,4 +10,6 @@ urlpatterns = [
     path('administrador/cines/nuevo/', CineCreate.as_view(), name='Create'),
     path('administrador/cines/editar/<int:pk>/', CineUpdate.as_view(), name='Update'),
     path('administrador/cines/eliminar/<int:pk>/', CineDelete.as_view(), name='Delete'),
+    path('register/', Register.as_view(), name='Register'),
+    #path('register/confirmacion', Register.as_view(), name='ConfirmacionR'),
 ]
