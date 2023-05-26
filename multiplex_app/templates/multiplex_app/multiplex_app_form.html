@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="container" id="formulario">
+    {% if request.user.is_authenticated and request.user.is_staff %}
     <form method="post">
         {% csrf_token %}
     
@@ -11,5 +12,14 @@
 
         <button type="submit">Guardar</button>
     </form>
+    {% else %}
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">No estas autorizado para entrar a esta pagina</div>
+            </div>
+        </li>
+    </ol>
+    {% endif %}
 </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from reserva.models import Usuario
 from comidas.models import Snack
 from .forms import FuncionForm
 from .models import Funcion, sillasDisponibles
@@ -30,26 +31,28 @@ class FuncionDetail(DetailView):
         context['asientos'] = self.asientos
         context['precio'] = self.precio
         context['snacks'] = Snack.objects.all()
+        context['usuario'] = Usuario.objects.get(dj_user=self.request.user)
+        
         return context
 
-class FuncionList(ListView):
+class FuncionList(LoginRequiredMixin, ListView):
     model = Funcion
     template_name = 'funcion/funcion_list.html'
     context_object_name = 'funcion_list'
 
-class FuncionUpdate(UpdateView):
+class FuncionUpdate(LoginRequiredMixin, UpdateView):
     model = Funcion
     template_name = 'funcion/funcion_form.html'
     form_class = FuncionForm
     success_url = reverse_lazy('funcion:Funciones')
 
-class FuncionCreate(CreateView):
+class FuncionCreate(LoginRequiredMixin, CreateView):
     model = Funcion
     template_name = 'funcion/funcion_form.html'
     form_class = FuncionForm
     success_url = reverse_lazy('funcion:Funciones')
 
-class FuncionDelete(DeleteView):
+class FuncionDelete(LoginRequiredMixin, DeleteView):
     model = Funcion
     template_name = 'funcion/funcion_confirm_delete.html'
     success_url = reverse_lazy('funcion:Funciones')

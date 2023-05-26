@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container" id="multiplex-admin">
+    {% if request.user.is_authenticated and request.user.is_staff %}
     <div class="row">
         <div class="col-12 text-center my-3">
             <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'multiplex_app:Create' %}'">añadir Multiplex</button>
@@ -28,5 +29,14 @@
         {% endif %}
 
     </ol>
+    {% else %}
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">No estas autorizado para entrar a esta pagina</div>
+            </div>
+        </li>
+    </ol>
+    {% endif %}
 </div>
 {% endblock %}
