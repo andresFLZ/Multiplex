@@ -327,6 +327,37 @@ p.text span{
     pointer-events: none;
 }
 
+.cont-c {
+    margin: 30px auto;
+    padding: 0;
+    border: solid #198754;
+    box-shadow: 0 0 5px 10px rgb(0 0 0 / 20%);
+    border-radius: 2%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.cont-c .elementos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cont-c p {
+    margin: 20px auto;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.cont-c .elementos img {
+    width: 80px;
+    margin: 20px auto;
+}
+
+.cont-c .elementos button {
+    margin: 20px auto;
+}
+
 @media screen and (min-width: 992px) {
     #cartelera .peliculas .pelicula {
       width: 31%;

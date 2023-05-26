@@ -2,5 +2,16 @@
 {% load static %}
 
 {% block content %}
-
+<div class="container">
+    <div class="row cont-c">
+        <div class="col-12">
+            <p>Reserva realizada correctamente.
+            </p>
+            <div class="elementos">
+            <img src="{% static 'img/check.jpg' %}" alt="imagen de exito en reserva">
+            <button type="button" class="btn btn-success" onclick="window.location.href = '{% url 'multiplex_app:Inicio' %}'">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
