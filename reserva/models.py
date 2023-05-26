@@ -2,6 +2,7 @@ from django.db import models
 from funcion.models import Funcion
 from multiplex_app.models import Punto_agil
 from comidas.models import Snack
+from django.contrib.auth.models import User
 
 
 class Usuario(models.Model):
@@ -11,6 +12,7 @@ class Usuario(models.Model):
     edad = models.IntegerField()
     correo = models.EmailField()
     puntos = models.IntegerField(default=0)
+    dj_user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Usuario de Django')
 
     class Meta:
         db_table = 'Usuario'
@@ -36,18 +38,6 @@ class Reserva(models.Model):
     def __str__(self):
         template = '{0.funcion_id} - {0.usuario_id}'
         return template.format(self)
-    
-    """def crear_venta(self):
-        ventaN = Venta.objects.create(
-                valor = self.valor,
-                punto_agil_id = Punto_agil.objects.get(pk=1),
-                reserva_id = self,
-            )
-        ventaN.save()
-    
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            super().save(*args, **kwargs)"""
             
 class Venta(models.Model):
     fecha = models.DateField(auto_now_add=True, blank=True)

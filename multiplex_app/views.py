@@ -1,10 +1,13 @@
-from django.shortcuts import redirect
+from typing import Any, Dict
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth import authenticate, login
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.views.generic.edit import FormView
-from django.views.generic.base import TemplateView, RedirectView
+from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from reserva.forms import UsuarioForm
+from reserva.models import Usuario
 from .forms import CineForm, CustomUserCreationForm
 from cartelera.models import Pelicula
 from reserva.models import Funcion
@@ -58,42 +61,46 @@ class CineDelete(LoginRequiredMixin, DeleteView):
     template_name = 'multiplex_app/multiplex_app_confirm_delete.html'
     success_url = reverse_lazy('multiplex_app:cines_list')
 
-"""class RegisterForm(TemplateView):
-    template_name = 'registration/register.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(RegisterForm, self).get_context_data(**kwargs)
-        context['form'] = CustomUserCreationForm()        
-
-        return context
-    
-class Register(RedirectView):
-    pattern_name = 'multiplex_app:Inicio'
-    
-    def dispatch(self, request, *args, **kwargs):
-        
-        if request.POST:
-            user_creation_form = CustomUserCreationForm(data=request.POST)
-            print(user_creation_form.is_valid())
-
-            if user_creation_form.is_valid():
-                print("validF")
-                user_creation_form.save()
-
-                user = authenticate(username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
-                login(request, user)
-
-        return super().dispatch(request, *args, **kwargs)"""
-
 class Register(FormView):
     template_name = 'registration/register.html'
     form_class = CustomUserCreationForm
+    second_form_class = UsuarioForm
     success_url = reverse_lazy('multiplex_app:Inicio')
 
-    def form_valid(self, form):
-        user = form.save()
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password1')
-        user = authenticate(username=username, password=password)
-        login(self.request, user)
-        return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super(Register, self).get_context_data(**kwargs)
+        
+        if 'form' not in context:
+            context['form'] = self.form_class(self.request.GET)
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(self.request.GET)
+        
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        form2 = self.second_form_class(request.POST)
+
+        if form.is_valid() and form2.is_valid():
+            userDj = form.save()
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(self.request, user)
+
+            usuario = Usuario.objects.create(
+            dni=form2.cleaned_data.get('dni'),
+            nombre=userDj.first_name,
+            apellido=userDj.last_name,
+            edad=form2.cleaned_data.get('edad'),
+            correo=userDj.email,
+            dj_user=userDj,
+            )
+
+            usuario.save()
+
+            return HttpResponseRedirect(self.get_success_url())
+        
+        else:
+            return self.render_to_response(self.get_context_data(form=form, form2=form2))
