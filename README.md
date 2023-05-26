@@ -32,3 +32,4 @@ Estas son las credenciales para ingresar como administrador:
 username: admin  
 password: 123456  
 
+Las imagenes que se usan en el proyecto estan [aquí](https://ibb.co/album/7NqJG4)
