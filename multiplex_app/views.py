@@ -22,7 +22,7 @@ class Inicio(TemplateView):
 
         return context
 
-class MultiplexList(ListView):
+class MultiplexList(LoginRequiredMixin, ListView):
     model = Cine
     template_name = 'multiplex_app/multiplex_app_list.html'
     context_object_name = 'cines_list'
@@ -39,7 +39,7 @@ class MultiplexDetail(DetailView):
 
         return context
     
-class CineList(ListView):
+class CineList(LoginRequiredMixin, ListView):
     model = Cine
     template_name = 'multiplex_app/multiplex_app_list_admin.html'
     context_object_name = 'cines_list'

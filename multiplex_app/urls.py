@@ -11,5 +11,4 @@ urlpatterns = [
     path('administrador/cines/editar/<int:pk>/', CineUpdate.as_view(), name='Update'),
     path('administrador/cines/eliminar/<int:pk>/', CineDelete.as_view(), name='Delete'),
     path('register/', Register.as_view(), name='Register'),
-    #path('register/confirmacion', Register.as_view(), name='ConfirmacionR'),
 ]

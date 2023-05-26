@@ -21,14 +21,8 @@ class ReservaRedirect(RedirectView):
 
     def actualizarSillasDisp(self, asientos, funcion):
         sillas_dispo = sillasDisponibles.objects.get(funcion_id=funcion)
-        #num_sillas = sillas_dispo.num_sillas_dispo
-        #sillas = sillas_dispo.sillas_dispo.split("-")
-
         sillasD = [elemento for elemento in sillas_dispo.sillas_dispo.split("-") if elemento not in asientos.split("-")]
-
         numS = sillas_dispo.num_sillas_dispo-len(asientos.split("-"))
-
-        #print(num_sillas, numeroS, sillas, asientos.split("-"), resultado, "-".join(resultado))
 
         sillas_dispo.num_sillas_dispo = numS
         sillas_dispo.sillas_dispo = "-".join(sillasD)
