@@ -9,7 +9,10 @@
     
         {{ form|crispy }}
 
-        <button type="submit">Guardar</button>
+        <div class="botones-crud">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="button" class="btn btn-danger" onclick="window.location.href = '{% url 'comidas:Comidas' %}'">Cancelar</button>
+        </div>
     </form>
 </div>
 {% endblock %}
