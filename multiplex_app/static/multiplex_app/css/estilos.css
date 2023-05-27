@@ -226,6 +226,14 @@ p.text span{
     color: white;
 }
 
+#formulario .botones-crud {
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
 #eliminar-registro {
     max-width: 600px;
     margin: 35px auto;
@@ -234,6 +242,14 @@ p.text span{
 
 #eliminar-registro p {
     color: white;
+}
+
+#eliminar-registro .botones-crud {
+    justify-content: space-between;
+    display: contents;
+    padding: 10px;
+    width: 85%;
+    margin-top: 20px;
 }
 
 #funciones ol {

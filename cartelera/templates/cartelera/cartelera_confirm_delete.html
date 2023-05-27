@@ -6,7 +6,10 @@
     <form method="post">
         {% csrf_token %}
         <p>Desea eliminar la pelicula {{ object }}</p>
-        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <div class="botones-crud text-center">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'cartelera:Cartelera' %}'">Cancelar</button>
+        </div>
     </form>
 </div>
 {% endblock %}
