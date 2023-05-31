@@ -43,6 +43,10 @@ body {
     padding: 10px;
 }
 
+#cartelera h1 {
+    color: #fff;
+}
+
 #multiplex {
     margin: 30px auto;
     padding: 0;

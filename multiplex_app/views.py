@@ -6,6 +6,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.views.generic.edit import FormView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from comidas.models import Snack
 from reserva.forms import UsuarioForm
 from reserva.models import Usuario
 from .forms import CineForm, CustomUserCreationForm
@@ -19,6 +20,7 @@ class Inicio(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Inicio, self).get_context_data(**kwargs)
         context['peliculas'] = Pelicula.objects.order_by('-fecha_estreno')[:3]
+        context['snacks'] = Snack.objects.order_by('-nombre')[:3]
 
         return context
 

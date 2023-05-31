@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container" id="cartelera">
+    <h1>Peliculas del momento</h1>
     <div class="row">
         {% if peliculas %}
         {% for pelicula in peliculas %}
@@ -14,6 +15,27 @@
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">Estreno: {{ pelicula.fecha_estreno }}</li>
 						<li class="list-group-item">Director: {{ pelicula.director }}</li>
+					</ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No hay registro de peliculas</p>
+        {% endif %}
+    </div>
+
+    <h1>Algunos de nuestros snacks</h1>
+    <div class="row">
+        {% if snacks %}
+        {% for snack in snacks %}
+        <div class="col-xs-12 col-lg-4">
+            <div class="card">
+                <img src={{ snack.imagen }} class="card-img-top" alt="Pelicula">
+                <div class="card-body">
+					<h5 class="card-title">{{ snack.nombre }}</h5>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Precio: {{ snack.valor }}</li>
 					</ul>
                 </div>
             </div>
