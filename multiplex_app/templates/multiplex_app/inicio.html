@@ -3,17 +3,19 @@
 
 {% block content %}
 <div class="container" id="cartelera">
-    <div class="row peliculas">
+    <div class="row">
         {% if peliculas %}
         {% for pelicula in peliculas %}
-        <div class="col-xs-12 col-lg-4 pelicula">
-            <div class="imagen">
-                <img src={{ pelicula.imagen }} alt="Pelicula en cartelera">
-            </div>
-            <div class="info-pelicula">
-                <h2>{{ pelicula.titulo }}</h2>
-                <p>Estreno: {{ pelicula.fecha_estreno }}</p>
-                <p>Director: {{ pelicula.director }}</p>
+        <div class="col-xs-12 col-lg-4">
+            <div class="card">
+                <img src={{ pelicula.imagen }} class="card-img-top" alt="Pelicula">
+                <div class="card-body">
+					<h5 class="card-title">{{ pelicula.titulo }}</h5>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Estreno: {{ pelicula.fecha_estreno }}</li>
+						<li class="list-group-item">Director: {{ pelicula.director }}</li>
+					</ul>
+                </div>
             </div>
         </div>
         {% endfor %}
