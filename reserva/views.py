@@ -1,13 +1,26 @@
 import json
-from django.views.generic.base import RedirectView
-from django.views.generic.base import TemplateView
+from django.views.generic import ListView
+from django.views.generic.base import RedirectView, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from funcion.models import sillasDisponibles
 from comidas.models import Snack
 from multiplex_app.models import Punto_agil
 from funcion.models import Funcion
 from .models import Reserva, Usuario, Venta, Venta_snack
 
-class reservaConfirm(TemplateView):
+class ReservaList(LoginRequiredMixin, ListView):
+    model = Reserva
+    template_name = 'reserva/reserva_list.html'
+    context_object_name = 'reserva_list'
+
+    def get_queryset(self):
+        usuario = Usuario.objects.get(dj_user=self.request.user)
+        print(usuario) 
+        queryset = super().get_queryset().filter(usuario_id=usuario)
+
+        return queryset
+
+class ReservaConfirm(TemplateView):
     template_name = 'reserva/reserva_confirmacion.html'
 
 class ReservaRedirect(RedirectView):

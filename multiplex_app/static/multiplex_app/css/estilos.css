@@ -33,49 +33,18 @@ body {
     margin-bottom: 25px;
 }
 
-#cartelera .peliculas {
-    height: 100%;
+#cartelera .card {
+    margin: 15px 0;
 }
 
-#cartelera .peliculas .pelicula {
-    height: 100%;
-    padding: 12px 0;
-    text-align: -webkit-center;
-    margin: 0 10px 10px;
-    background-color: aliceblue;
-    border: solid #198754;
-    box-shadow: 0 0 5px 10px rgb(0 0 0 / 20%);
-    border-radius: 2%;
-
-}
-
-#cartelera .peliculas .imagen {
-    height: 75%;
-    width: 85%;
-    text-align: center;
-}
-
-#cartelera .peliculas .imagen img {
-    width: 85%;
-    border: solid #198754;
-    border-radius: 4%;
-}
-
-#cartelera .peliculas .info-pelicula {
-    text-align: center;
-    border: solid;
-    border-radius: 12px;
-    margin: 15px 0 0;
-    width: 85%;
-    box-shadow: 0 0 5px 10px rgb(0 0 0 / 20%);
-}
-
-#cartelera .peliculas .botones-crud {
+#cartelera .botones-crud {
     justify-content: space-between;
     display: flex;
     padding: 10px;
-    width: 70%;
-    margin-top: 20px;
+}
+
+#cartelera h1 {
+    color: #fff;
 }
 
 #multiplex {

@@ -11,24 +11,26 @@
     </div>
     {% endif %}
 
-    <div class="row peliculas">
+    <div class="row">
 
         {% if comidas_list %}
         {% for comida in comidas_list %}
-        <div class="col-xs-12 col-lg-4 pelicula">
-            <div class="imagen">
-                <img src={{ comida.imagen }} alt="Pelicula en cartelera">
+        <div class="col-xs-12 col-lg-4">
+            <div class="card">
+                <img src={{ comida.imagen }} class="card-img-top" alt="Pelicula">
+                <div class="card-body">
+					<h5 class="card-title">{{ comida.nombre }}</h5>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Precio: {{ comida.valor }}</li>
+					</ul>
+                    {% if request.user.is_authenticated and request.user.is_staff %}
+                    <div class="botones-crud">
+                        <button type="button" class="btn btn-success" onclick="window.location.href = '{% url 'comidas:Update' comida.id %}'">Editar</button>
+                        <button type="button" class="btn btn-danger" onclick="window.location.href = '{% url 'comidas:Delete' comida.id %}'">Eliminar</button>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-            <div class="info-pelicula">
-                <h2>{{ comida.nombre }}</h2>
-                <p>Estreno: {{ comida.valor }}</p>
-            </div>
-            {% if request.user.is_authenticated and request.user.is_staff %}
-            <div class="botones-crud">
-                <button type="button" class="btn btn-success" onclick="window.location.href = '{% url 'comidas:Update' comida.id %}'">Editar</button>
-                <button type="button" class="btn btn-danger" onclick="window.location.href = '{% url 'comidas:Delete' comida.id %}'">Eliminar</button>
-            </div>
-            {% endif %}
         </div>
         {% endfor %}
         {% else %}

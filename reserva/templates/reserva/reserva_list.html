@@ -1,0 +1,23 @@
+{% extends "multiplex_app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" id="multiplex">
+    <ol class="list-group list-group-numbered">
+
+        {% if reserva_list %}
+        {% for reserva in reserva_list %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">{{ reserva.funcion_id.pelicula_id.titulo }}</div>
+                {{ reserva.funcion_id.multiplex_id.nombre }} - {{ reserva.funcion_id.horario }} - {{ reserva.funcion_id.fecha }}
+            </div>
+        </li>
+        {% endfor %}
+        {% else %}
+        <p>No hay registro de multiplex</p>
+        {% endif %}
+
+    </ol>
+</div>
+{% endblock %}
