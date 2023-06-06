@@ -1,6 +1,6 @@
 # Multiplex
 
-This project emulates a page of a cinema. To see it click [here](andresLimas.pythonanywhere.com)  
+This project emulates a page of a cinema. To see it click [here](http://andreslimas.pythonanywhere.com/)  
 
 - The project allows the user to see the billboard and the food section without having to log in, but in order to reserve it is necessary to log in  
 
